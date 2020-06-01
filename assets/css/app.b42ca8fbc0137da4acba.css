@@ -3085,7 +3085,7 @@ margin-bottom: 65px;
     .header__bottom {
         padding: 0;
         position: fixed;
-        z-index: 9;
+        z-index: 99;
         right: 0;
         width: 100%;
     }
