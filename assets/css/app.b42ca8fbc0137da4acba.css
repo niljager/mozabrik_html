@@ -3084,6 +3084,10 @@ margin-bottom: 65px;
 
     .header__bottom {
         padding: 0;
+        position: fixed;
+        z-index: 9;
+        right: 0;
+        width: 100%;
     }
 
     .nav__item {
