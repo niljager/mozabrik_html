@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="theme-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Webpack + Pug</title>
+    <meta name="description" content="Description for Webpack + Pug">
+    <link rel="stylesheet" type="text/css" href="assets/libs/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs/slick/slick-theme.css">
+    <link href="./assets/css/app.b42ca8fbc0137da4acba.css" rel="stylesheet">
+</head>
+<body class="page">
+<svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol class="icon-checkmark" id="checkmark" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"></path>
+    </symbol>
+    <symbol class="icon-del" id="del" enable-background="new 0 0 515.556 515.556" viewbox="0 0 515.556 515.556"
+            xmlns="http://www.w3.org/2000/svg">
+        <path d="m64.444 451.111c0 35.526 28.902 64.444 64.444 64.444h257.778c35.542 0 64.444-28.918 64.444-64.444v-322.222h-386.666z"></path>
+        <path d="m322.222 32.222v-32.222h-128.889v32.222h-161.111v64.444h451.111v-64.444z"></path>
+    </symbol>
+    <symbol class="icon-cart" id="cart" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+        <path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.304-15l-3.431 12h-2.102l2.542-9h-16.813l4.615 11h13.239l3.474-12h1.929l.743-2h-4.196z"></path>
+    </symbol>
+    <symbol class="icon-location" id="location" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 1c-3.148 0-6 2.553-6 5.702 0 3.148 2.602 6.907 6 12.298 3.398-5.391 6-9.15 6-12.298 0-3.149-2.851-5.702-6-5.702zm0 8c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm12 14h-24l4-8h3.135c.385.641.798 1.309 1.232 2h-3.131l-2 4h17.527l-2-4h-3.131c.435-.691.848-1.359 1.232-2h3.136l4 8z"></path>
+    </symbol>
+    <symbol class="icon-arrowRight" id="arrowRight" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+        <path fill="currentColor"
+              d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path>
+    </symbol>
+    <symbol class="icon-arrow" id="arrow" enable-background="new 0 0 451.111 451.111" viewbox="0 0 451.111 451.111"
+            xmlns="http://www.w3.org/2000/svg">
+        <path d="m451.111 193.333h-322.222l112.778-112.777-48.333-48.333-193.334 193.333 193.333 193.333 48.333-48.333-112.777-112.778h322.222z"></path>
+    </symbol>
+    <symbol class="icon-animal" id="animal" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M11.954 11c3.33 0 7.057 6.123 7.632 8.716.575 2.594-.996 4.729-3.484 4.112-1.092-.271-3.252-1.307-4.102-1.291-.925.016-2.379.836-3.587 1.252-2.657.916-4.717-1.283-4.01-4.073.774-3.051 4.48-8.716 7.551-8.716zm10.793-4.39c1.188.539 1.629 2.82.894 5.27-.704 2.341-2.33 3.806-4.556 2.796-1.931-.877-2.158-3.178-.894-5.27 1.274-2.107 3.367-3.336 4.556-2.796zm-21.968.706c-1.044.729-1.06 2.996.082 5.215 1.092 2.12 2.913 3.236 4.868 1.87 1.696-1.185 1.504-3.433-.082-5.215-1.596-1.793-3.824-2.599-4.868-1.87zm15.643-7.292c1.323.251 2.321 2.428 2.182 5.062-.134 2.517-1.405 4.382-3.882 3.912-2.149-.407-2.938-2.657-2.181-5.061.761-2.421 2.559-4.164 3.881-3.913zm-10.295.058c-1.268.451-1.92 2.756-1.377 5.337.519 2.467 2.062 4.114 4.437 3.269 2.06-.732 2.494-3.077 1.377-5.336-1.125-2.276-3.169-3.721-4.437-3.27z"></path>
+    </symbol>
+    <symbol class="icon-abstract" id="abstract" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+        <path d="M18 2l6 10.5-6 10.5h-12l-6-10.5 6-10.5z"></path>
+    </symbol>
+    <symbol class="icon-book" id="book" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M17.676 15.54c-1.433-.331-2.767-.621-2.121-1.841 1.966-3.713.521-5.699-1.555-5.699-2.117 0-3.527 2.062-1.555 5.699.665 1.227-.719 1.517-2.121 1.841-1.432.331-1.322 1.087-1.322 2.46h9.996c0-1.373.11-2.129-1.322-2.46zm-12.676-11.521v19.981h18v-19.981h-18zm16 15.981h-14.046v-14h14.046v14zm-1-20v2h-17v19h-2v-21h19z"></path>
+    </symbol>
+    <symbol class="icon-youtube" id="youtube" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+    </symbol>
+    <symbol class="icon-vk" id="vk" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+        <path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.629-.145-1.241-.205-1.809-.205-2.273 0-3.841.953-2.95 1.119 1.571.293 1.42 3.692 1.054 5.16-.638 2.556-3.036-2.024-4.035-4.305-.241-.548-.315-.974-1.175-.974h-3.255c-.492 0-.787.16-.787.516 0 .602 2.96 6.72 5.786 9.77 2.756 2.975 5.48 2.708 7.376 2.708z"></path>
+    </symbol>
+    <symbol class="icon-download" id="download" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M16 11h5l-9 10-9-10h5v-11h8v11zm1 11h-10v2h10v-2z"></path>
+    </symbol>
+    <symbol class="icon-instagram" id="instagram" xmlns="http://www.w3.org/2000/svg" width="33" height="33"
+            viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+    </symbol>
+    <symbol class="icon-warning" id="warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path fill="currentColor"
+              d="M448 0H64C28.7 0 0 28.7 0 64v288c0 35.3 28.7 64 64 64h96v84c0 9.8 11.2 15.5 19.1 9.7L304 416h144c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64zM256 336c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm25.4-110.4c-.8 8.2-7.7 14.4-15.9 14.4h-19c-8.2 0-15.1-6.2-15.9-14.4l-12.8-128c-.9-9.4 6.5-17.6 15.9-17.6h44.6c9.5 0 16.9 8.2 15.9 17.6l-12.8 128z"></path>
+    </symbol>
+    <symbol class="icon-logo" id="logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 425.2 49.96"><title>&Rcy;&iecy;&scy;&ucy;&rcy;&scy;
+        1</title>
+        <g id="Слой_2" data-name="Слой 2">
+            <g id="Слой_1-2" data-name="Слой 1">
+                <path d="M155.44,7.79H114.55v9.73h21.39L113.47,46.36a1.37,1.37,0,0,0,1.08,2.21h41.9V38.84h-22.4L156.52,10a1.37,1.37,0,0,0-1.08-2.21"></path>
+                <path d="M86.62,6.42c-13.87,0-25.11,9.75-25.11,21.77S72.75,50,86.62,50s25.12-9.75,25.12-21.77S100.5,6.42,86.62,6.42m0,33.08A11.53,11.53,0,0,1,74.88,28.19a11.75,11.75,0,0,1,23.49,0A11.53,11.53,0,0,1,86.62,39.5"></path>
+                <path d="M253.79,27a10.73,10.73,0,0,0,3.13-7.48c0-6.46-6-11.69-13.49-11.69H215.7V48.57h31.23c7.32-.13,13.21-5.31,13.21-11.69A11.44,11.44,0,0,0,253.79,27m-25.6-10h11.13a4,4,0,0,1,4.23,3.66,4,4,0,0,1-4.23,3.66H228.19Zm14.52,22.41H228.19V32.08h14.52a4,4,0,0,1,4.22,3.65,4,4,0,0,1-4.22,3.66"></path>
+                <rect x="315.81" y="7.8" width="12.48" height="40.78"></rect>
+                <path d="M309.07,22.34c0-8-7.51-14.55-16.77-14.55H266.15V48.57h12.49V36.88h7.61l9.36,11.69h13.83L299.08,35.64c5.89-2.26,10-7.36,10-13.3m-20,6.09H278.64V17H289.1c3.64,0,6.6,2.56,6.6,5.72s-3,5.73-6.6,5.73"></path>
+                <path d="M334.48,28.19c0,11.7,11.88,21.18,26.53,21.18a32.05,32.05,0,0,0,12-2.28V33.44c-2.31,3.23-6.68,5.4-11.69,5.4-7.42,0-13.44-4.77-13.44-10.65s6-10.65,13.44-10.65c5,0,9.53,2.22,11.69,5V9.29A32.05,32.05,0,0,0,361,7c-14.65,0-26.53,9.48-26.53,21.17"></path>
+                <path d="M184.41,8.23,158.54,48.57h13.32l2.24-3.63h22.17l2.24,3.63h13.32L186,8.23a1,1,0,0,0-.78-.43.93.93,0,0,0-.78.43m-5.65,29.14,6.43-10.44,6.43,10.44Z"></path>
+                <polygon
+                        points="408.2 26.76 422.97 7.8 410.48 7.8 392.37 31.05 392.37 7.79 379.89 7.79 379.89 48.58 391.2 48.58 401.06 35.92 410.93 48.58 425.2 48.58 408.2 26.76"></polygon>
+                <path d="M28.24,14c5.59,0,10.12-3.14,10.12-7S33.83,0,28.24,0,18.11,3.14,18.11,7s4.53,7,10.13,7"></path>
+                <path d="M54.55,8.72,28.24,32.11,1.92,8.72A1.13,1.13,0,0,0,.69,8.53,1.13,1.13,0,0,0,0,9.58v39H12.49V34L26.7,47.16a2.32,2.32,0,0,0,1.54.59,2.3,2.3,0,0,0,1.53-.59L44,34V48.57H56.47v-39a1.15,1.15,0,0,0-1.92-.86"></path>
+            </g>
+        </g>
+    </symbol>
+</svg>
+
+
+<div id="modal-window1" class="modal-window modal-window-tm-1">
+    <div class="window-container animation">
+        <a class="close"></a>
+        <div class="modal-content">
+            <h3> ВАШ ГОРОД - <span>МОСКВА</span></h3>
+            <div class="button-modal-wrapper">
+                <a class="button button&#45;&#45;fill" href="">Да</a>
+                <a href="#modal-window2" class="open-window2 user-panel button&#45;&#45;fill button w_button">выбрать другой</a>
+
+
+            </div>
+            <p>От выбранного города зависят
+                сроки доставки</p>
+        </div>
+    </div>
+</div>
+
+<div id="modal-window2" class="modal-window2 modal-window-tm-2">
+    <div class="window-container2 animation2">
+        <a class="close2"></a>
+        <div class="modal-content2">
+            <div class="input-block">
+                <label>ВВЕДИТЕ ГОРОД
+                    </label>
+                <input type="text" placeholder="Москва">
+            </div>
+            <div class="button-modal-wrapper button-modal-wrapper2">
+                <a class="button button--fill reviews__button" href="">Принять</a>
+                <a class="button--fill button w_button" href="">отменить</a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="over"></div>
+
+<header class="header">
+    <div class="header__top">
+        <div class="wrap">
+            <div class="header__inner"><a class="header__logo" href="/">
+                <svg class="icon icon-logo header__logo-svg">
+                    <use xlink:href="#logo"></use>
+                </svg>
+            </a>
+                <p class="header__text header__text1">Официальный сайт</p>
+                <p class="header__text header__text2">Пн-вс 10:00 - 20:00</p>
+                <div class="header__city-select-open button">
+                    <svg class="icon icon-location header__city-select-open-svg">
+                        <use xlink:href="#location"></use>
+                    </svg>
+                    <span class="header__city-select-open-value">
+                        <a class="open-window-toggle user-panel">Москва</a>
+                    </span>
+
+                    <div class="content-toggle">
+                        <h3> ВАШ ГОРОД - <span>МОСКВА</span></h3>
+                        <div class="button-modal-wrapper">
+                            <a class="button button&#45;&#45;fill" href="">Да</a>
+                            <a  href="#modal-window2" class="open-window2 user-panel button&#45;&#45;fill button w_button">выбрать другой</a>
+
+
+                        </div>
+                        <p>От выбранного города зависят
+                            сроки доставки</p>
+                    </div>
+
+                </div>
+
+                <a class="header__number" href="tel:+71234567890">+7 (123) 456 78-90</a>
+                <a class="header__basket basket"
+                   href="">
+                    <svg class="icon icon-cart basket__svg">
+                        <use xlink:href="#cart"></use>
+                    </svg>
+                    <div class="basket__count">2</div>
+                </a>
+                <a class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class="header__bottom">
+        <div class="wrap">
+            <nav class="header__nav nav">
+                <a class="nav__item" href="/">Каталог</a>
+                <a class="nav__item" href="/">Доставка по россии</a>
+                <a class="nav__item" href="/">Дилерам</a>
+                <a class="nav__item" href="/">О MOZABRICK</a>
+                <a class="nav__item" href="/">Контакты</a>
+                <p class="nav__text">
+                    <a href="#modal-window1" class="open-window user-panel">
+                    <svg class="icon icon-location header__city-select-open-svg">
+                        <use xlink:href="#location"></use>
+                    </svg>
+                    <span class="header__city-select-open-value">Москва</span>
+                    </a>
+                </p>
+                <p class="nav__text">Пн-вс 10:00 - 20:00</p>
+
+                <a class="header__number header__number_mob" href="tel:+71234567890">+7 (123) 456 78-90</a>
+
+
+            </nav>
+
+
+        </div>
+    </div>
+</header>
+<div class="promo promo--home">
+    <div class="wrap">
+        <div class="promo__inner"><h1 class="promo__title">Фотоконструктор Mozabrick</h1>
+            <p class="promo__text">Соберите свою фотографию или любое изображение по нашей инструкции!</p><a
+                    class="promo__button button button--fill" href="">Купить конструктор
+                <svg class="icon icon-arrowRight button__svg">
+                    <use xlink:href="#arrowRight"></use>
+                </svg>
+            </a>
+            <div class="promo__img"><img src="assets/img/promo1.png" alt="promo"></div>
+        </div>
+    </div>
+</div>
+<div class="aboutProduct">
+    <div class="wrap">
+        <div class="aboutProduct__inner"><h2 class="aboutProduct__title">какой выбрать формат?</h2>
+            <div class="aboutProduct__products">
+                <div class="about__left about__left__tm">
+                    <div class="aboutProduct__img">
+                        <img class="aboutProduct__bg" src="assets/img/bg1.png" alt="bg">
+
+                        <div class="toggle-wrapper">
+
+                            <div class="tabs__content tabs__content_h2 ">
+                                <img class="aboutProduct__item aboutProduct__item--active" src="assets/img/item1.png"
+                                     alt="">
+                            </div>
+                            <div class="tabs__content tabs__content_h active">
+                                <img class="aboutProduct__item" src="assets/img/item2.png" alt="">
+
+                            </div>
+
+
+                        </div>
+
+                        <img class="aboutProduct__bg aboutProduct__bg2" src="assets/img/bg2.png" alt="bg">
+                    </div>
+                </div>
+                <div class="aboutProduct__right">
+                    <div class="aboutProduct__tabs tabs">
+                        <div class="tabs__item ">
+                            <div class="tabs__box"></div>
+                            <p class="tabs__text"> 51х51<span>см</span></p></div>
+                        <div class="tabs__item tabs__item--active">
+                            <div class="tabs__box"></div>
+                            <p class="tabs__text"> 76х76<span>см</span></p></div>
+                    </div>
+
+                    <div class="tabs__content ">
+                        <div class="aboutProduct__content"><h3 class="aboutProduct__title">Набор S</h3>
+                            <p class="aboutProduct__text">Идеальный размер S для картины в спальню или детскую комнату.
+                                Формат подходит для фотографий-селфи, единичных объектов крупным планом и макросъемки.
+                                Черно-белое мозаичное изображение отлично впишется в интерьер в стиле модерн, хай тек
+                                или
+                                арт-деко.</p><a class="aboutProduct__button button button--fill" href="/">подробнее
+                                <svg class="icon icon-arrowRight button__svg">
+                                    <use xlink:href="#arrowRight"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tabs__content active">
+                        <div class="aboutProduct__content"><h3 class="aboutProduct__title">Набор L</h3>
+                            <p class="aboutProduct__text">Формат L оптимален для изображений с группами лиц, фотографий
+                                из серии "Love story", корпоративных снимков. Для креативного интерьерного оформления вы
+                                можете собрать цветочные имиджи крупным планом или фотографию своего любимого
+                                питомца.</p><a class="aboutProduct__button button button--fill" href="/">подробнее
+                                <svg class="icon icon-arrowRight button__svg">
+                                    <use xlink:href="#arrowRight"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="steps">
+    <div class="wrap">
+        <div class="steps__inner"><h2 class="steps__title">Конструктор Mozabrick ― уникальная возможность создать
+            арт-объект своими руками. Как это делается?</h2>
+            <div class="steps__list">
+                <div class="steps__item"><p class="steps__num">1</p>
+                    <p class="steps__text"> Вы покупаете упаковку Mozabrick в формате<br>51х51см или 76х76см в которых
+                        находятся детали с пятью цветовыми градациями</p></div>
+                <div class="steps__item"><p class="steps__num">2</p>
+                    <p class="steps__text"> Заходите на наш сайт,<br>вводите код доступа,<br>указанный на вашей
+                        упаковке, и загружаете фотографию, которую хотите собрать</p></div>
+                <div class="steps__item"><p class="steps__num">3</p>
+                    <p class="steps__text"> Получаете бесплатную инструкцию в формате PDF по сборке изображения.</p>
+                </div>
+                <div class="steps__item"><p class="steps__num">4</p>
+                    <p class="steps__text"> Собираете фотографию для себя или в подарок и наслаждаетесь творческим
+                        процессом</p></div>
+                <div class="steps__item"><p class="steps__num">5</p>
+                    <p class="steps__text"> Надоело?<br>Пересобирайте с новым изображением!</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="testApp">
+    <div class="wrap">
+        <div class="testApp__inner"><h2 class="testApp__title">Хотите узнать, как будет выглядеть ваша фотография в
+            формате Mozabrick?</h2>
+            <div class="testApp__content">
+                <div class="testApp__left">
+                    <svg class="icon icon-book testApp__left-svg">
+                        <use xlink:href="#book"></use>
+                    </svg>
+                    <p class="testApp__text">Загрузите ваш файл и получите макет будущего изображения.</p>
+                    <button class="button testApp__button button--fill"> Загрузить файл
+                        <svg class="icon icon-download button__svg">
+                            <use xlink:href="#download"></use>
+                        </svg>
+                    </button>
+                </div>
+                <div class="testApp__img"><img src="assets/img/img-test.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="featuresList">
+    <div class="wrap">
+        <div class="featuresList__inner"><h2 class="featuresList__title">Не знаете что подарить близким?</h2>
+            <p class="featuresList__info">Фотоконструктор Mozabrick ― мега-подарок для творческих людей!</p>
+            <div class="featuresList__list">
+                <div class="featuresList__item featuresList__item1">
+                    <div class="featuresList__content">Любая фотография в формате Mozabrick становится арт-объектом,
+                        украшающим дизайн вашей квартиры или офиса.
+                    </div>
+                </div>
+                <div class="featuresList__item featuresList__item2">
+                    <div class="featuresList__content">Все изображения можно менять и пересобирать заново, используя
+                        генератор макетов на нашем сайте.
+                    </div>
+                </div>
+                <div class="featuresList__item featuresList__item3">
+                    <div class="featuresList__content">Процесс сборки мозаики увлекателен и развивает ручную моторику.
+                        Можете собирать фотографию сами или вместе со своими друзьями.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="reviews">
+    <div class="wrap">
+        <div class="reviews__inner">
+            <div class="reviews__header"><h2 class="reviews__title">Отзывы покупателей • 294</h2><a
+                    class="button button--fill reviews__button" href="">Оставить отзыв</a></div>
+            <div class="reviews__list">
+                <div class="reviews__item">
+                    <div class="reviews__avatar">А</div>
+                    <div class="reviews__content"><h3 class="reviews__name">Алексей</h3>
+                        <p class="reviews__text">Очень крутая вещь! Именинник доволен :)</p></div>
+                    <div class="reviews__images">
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                    </div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__avatar">ЕА</div>
+                    <div class="reviews__content"><h3 class="reviews__name">Алексей</h3>
+                        <p class="reviews__text">Любимов
+                            Очень интересный процесс, тем более можно пересобрать во что-то другое! 10 деталек из 10</p>
+                    </div>
+                    <div class="reviews__images">
+
+                    </div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__avatar">А</div>
+                    <div class="reviews__content"><h3 class="reviews__name">Алексей</h3>
+                        <p class="reviews__text">Любимов
+                            Очень интересный процесс, тем более можно пересобрать во что-то другое! 10 деталек из 10</p>
+                    </div>
+                    <div class="reviews__images">
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                        <div class="reviews__img"><img src="assets/img/reviews2.png" alt="reviews"></div>
+                        <div class="reviews__img"><img src="assets/img/reviews3.png" alt="reviews"></div>
+                    </div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__avatar">А</div>
+                    <div class="reviews__content"><h3 class="reviews__name">Алексей</h3>
+                        <p class="reviews__text">Очень крутая вещь! Именинник доволен :)</p></div>
+                    <div class="reviews__images">
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                    </div>
+                </div>
+                <div class="reviews__item">
+                    <div class="reviews__avatar">А</div>
+                    <div class="reviews__content"><h3 class="reviews__name">Алексей</h3>
+                        <p class="reviews__text">Очень крутая вещь! Именинник доволен :)</p></div>
+                    <div class="reviews__images">
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                        <div class="reviews__img"><img src="assets/img/reviews1.png" alt="reviews"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews__load-wrap">
+                <button class="reviews__load button">Показать еще</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="examples">
+    <div class="wrap">
+        <div class="examples__inner"><h2 class="examples__title"> Хотите собрать картину своими руками, но не знаете<br>какое
+            изображение выбрать?</h2>
+            <p class="examples__info"> Мы подобрали для вас каталог самых популярных имиджей для дома и офиса</p>
+            <div class="examples__list">
+                <div class="examples__item">
+                    <div class="examples__header">
+                        <h3 class="examples__subtitle">
+                            <img src="./assets/img/category-icon-1.png">
+                            Анималистика
+                        </h3>
+                        <div class="examples__controls"></div>
+                    </div>
+                    <div class="examples__body">
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                    </div>
+                </div>
+                <div class="examples__item">
+                    <div class="examples__header">
+                        <h3 class="examples__subtitle">
+                            <img src="./assets/img/category-icon-2.png">
+                            Цветы и природа
+                        </h3>
+                        <div class="examples__controls"></div>
+                    </div>
+                    <div class="examples__body">
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                    </div>
+                </div>
+                <div class="examples__item">
+                    <div class="examples__header">
+                        <h3 class="examples__subtitle">
+                            <img src="./assets/img/category-icon-3.png">
+                            Офисная тематика
+                        </h3>
+                        <div class="examples__controls"></div>
+                    </div>
+                    <div class="examples__body">
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                    </div>
+                </div>
+
+                <div class="examples__item">
+                    <div class="examples__header">
+                        <h3 class="examples__subtitle">
+                            <img src="./assets/img/category-icon-4.png">
+                            Love story
+                        </h3>
+                        <div class="examples__controls"></div>
+                    </div>
+                    <div class="examples__body">
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                    </div>
+                </div>
+
+                <div class="examples__item">
+                    <div class="examples__header">
+                        <h3 class="examples__subtitle">
+                            <img src="./assets/img/category-icon-5.png">
+                            Абстракция
+                        </h3>
+                        <div class="examples__controls"></div>
+                    </div>
+                    <div class="examples__body">
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                        <div class="examples__img"><img src="assets/img/example1.png" alt="example"></div>
+                    </div>
+                </div>
+            </div>
+            <a class="examples__button button button--fill" href="">Перейти в каталог
+                <svg class="icon icon-arrowRight button__svg">
+                    <use xlink:href="#arrowRight"></use>
+                </svg>
+            </a></div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrap">
+        <div class="footer__inner">
+            <div class="footer__left"><a class="footer__logo" href="/">
+                <svg class="icon icon-logo footer__logo-svg">
+                    <use xlink:href="#logo"></use>
+                </svg>
+            </a>
+                <div class="footer__links"><a class="footer__link" href="/">Каталог</a><a class="footer__link" href="/">Дилерам</a><a
+                        class="footer__link" href="/">О Mozabrick</a><a class="footer__link" href="/">контакты</a><a
+                        class="footer__link" href="/">Советы по сборке</a><a class="footer__link" href="/">Оплата</a><a
+                        class="footer__link" href="/">гарантия и возврат</a></div>
+            </div>
+            <div class="footer__right">
+                <div class="footer__img">
+                    <div class="footer__img-text">
+                        <p>
+                            <span>Уже купил mozabrick?</span>
+                            Загрузи фото и скачай инструкцию для сборке по ссылке
+                        </p>
+                    </div>
+                    <a class="footer-img" href="">
+                        <img src="assets/img/footer-button.png">
+                    </a>
+                </div>
+                <div class="footer__line">
+                    <div class="footer__block">
+                        <div class="footer__mode"><p class="footer__subtitle">время работы</p>
+                            <p class="footer__text">пн-вс 10:00 - 20:00</p></div>
+                        <div class="footer__block"><p class="footer__subtitle">Медиа</p>
+                            <div class="footer__social-icons social-icons"><a class="social-icons__item" href="">
+                                <svg class="icon icon-instagram social-icons__svg">
+                                    <use xlink:href="#instagram"></use>
+                                </svg>
+                            </a><a class="social-icons__item" href="">
+                                <svg class="icon icon-youtube social-icons__svg">
+                                    <use xlink:href="#youtube"></use>
+                                </svg>
+                            </a><a class="social-icons__item" href="">
+                                <svg class="icon icon-vk social-icons__svg">
+                                    <use xlink:href="#vk"></use>
+                                </svg>
+                            </a></div>
+                        </div>
+                    </div>
+                    <div class="footer__block footer__block-right"><a class="footer__number"
+                                                                      href="tel:+7 (123) 456 78-90">+7 (123) 456
+                        78-90</a><a class="footer__email" href="mailto:mail@example.com">mail@example.com</a>
+                        <p class="footer__adress">Москва, ул. пушкина, 1</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__banner">
+        <div class="wrap">
+            <div class="footer__banner-inner">
+                <div class="footer__banner-text">© 2020. Все права защищены. Весь размещенный на сайте товар
+                    (изображения и описания) носит исключительно информационный характер и не является договором
+                    публичной оферты
+                </div>
+                <object class="footer__banner-img" data="assets/img/mosaic-5.svg" type="image/svg+xml"></object>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/libs/jquery.js"></script>
+<script src="assets/libs/slick/slick.min.js"></script>
+<script>$('.examples__body').slick({
+    dots: false,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    centerPadding: '30px',
+    adaptiveHeight: true,
+    responsive: [
+        {
+            breakpoint: 420,
+            settings: {
+                slidesToShow: 2
+            }
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 3
+            }
+        }
+    ]
+
+
+    /*prevArrow: '<button type="button" class="slick-prev"><svg class="icon icon-arrowRight">' +
+     '<use xlink:href="#arrowRight"></use></svg></button>',
+     nextArrow: '<button type="button" class="slick-next">' +
+     '<svg class="icon icon-arrowRight"><use xlink:href="#arrowRight"></use></svg></button>'*/
+});
+
+</script>
+<script type="text/javascript" src="./assets/js/vendors.b42ca8fbc0137da4acba.js"></script>
+<script type="text/javascript" src="./assets/js/app.b42ca8fbc0137da4acba.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        $('.tabs__item').click(function () {
+            $('.tabs__item').removeClass("tabs__item--active");
+            $(this).toggleClass("tabs__item--active");
+            $('.tabs__content').toggleClass("active");
+
+
+        });
+
+
+        var h = $(".tabs__content_h").height();
+        $(".tabs__content_h2").height(h);
+
+        $('.menu-toggle').click(function () {
+            $('.header__nav').toggleClass("active");
+        });
+    });
+
+
+</script>
+
+<script>
+    $('.header__city-select-open').click(function () {
+        $('.content-toggle').toggleClass('content-toggle-up-active');
+        $('.over').toggleClass('over-active');
+    });
+
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        var div = $('.content-toggle-up-active'); // тут указываем класс элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            $(".content-toggle-up-active").removeClass("content-toggle-up-active"); // скрываем его
+            $('.over').removeClass('over-active');
+        }
+    });
+
+
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.open-window').click(function () {
+            $('.modal-window').fadeIn(function () {
+                $('.window-container').addClass('visible');
+            });
+        });
+        $('.close, .modal-window').click(function () {
+            $('.modal-window').fadeOut().end().find('.window-container').removeClass('visible');
+        });
+        $('.window-container').click(function (event) {
+            event.stopPropagation()
+        });
+    });
+</script>
+<script>
+        $(document).ready(function () {
+
+
+        $('.open-window2').click(function () {
+            $('.modal-window2').fadeIn(function () {
+                $('.window-container2').addClass('visible2');
+            });
+        });
+        $('.close2, .modal-window2').click(function () {
+            $('.modal-window2').fadeOut().end().find('.window-container2').removeClass('visible');
+        });
+        $('.window-container2').click(function (event) {
+            event.stopPropagation();
+
+
+        });
+
+
+
+    });
+</script>
+</body>
+</html>
