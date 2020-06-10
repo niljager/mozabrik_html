@@ -3372,7 +3372,34 @@ iframe {
     max-width: 100%;
 }
 
-
+.article {
+    background-color: #ffffff;
+}
+.article__item_bottom {
+    margin-bottom: 40px;
+}
+.article__item {
+    padding: 69px 0 68px;
+}
+.article__inner {
+    display: flex;
+    flex-direction: column;
+}
+.article__title {
+    font-size: 48px;
+    font-family: Inter;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+.article__text {
+    font-style: normal;
+    color: #000;
+    font-family: Montserrat, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 33px;
+}
 
 @media screen and (max-width: 1199px) {
     .product-card-block img {
